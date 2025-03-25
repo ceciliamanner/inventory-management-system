@@ -1,0 +1,88 @@
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-background-light);
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    padding: var(--spacing-large) 0;
+    text-align: center; 
+  }
+
+.entry-data-button{
+    min-height: 100px;
+    min-height: 16px;
+    padding: 0.5rem 1.5rem;
+    margin: 1rem;
+    border-radius: var(--border-radius-small);
+    border: 1px solid rgb(144, 137, 137);
+
+} 
+
+  /* MEDICIN DISPLAY TABLE */ 
+
+  .inventory-display{
+    width: 100%;
+    height: 100%;
+  }
+
+  .inventory__table{
+    width: 90%;
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
+
+  th, td {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    text-align: left;
+  }
+
+
+  /* ENTRY DATA FORM */
+
+  .form-modal{
+    display: none;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color:rgba(0, 0, 0, 0.3);
+  }
+
+  .form{
+    min-width: 360px;
+    padding: var(--spacing-medium);
+    width: 50%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-background-light);
+    border-radius: var(--border-radius-small);
+  }
+  
+  .form__quantity-input{
+    margin-bottom: 1rem;
+  }
+  
+  .form__submit-button, 
+  .form__cancel-button {
+    width: 50%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+/**/ 
+  .display-form{
+    display: flex;
+  }
