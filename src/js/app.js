@@ -26,12 +26,15 @@ document.addEventListener("DOMContentLoaded",() => {
         closeForm,
         formModal,
         form,
-        formSubmitButton
+        formSubmitButton  
     );
+
+    Ui.renderProducts();
 });
 
 form.addEventListener("submit", (e) => {
     e.preventDefault(); 
+
     ProductManager.addProduct(
         productName.value.trim(), 
         supplier.value,
@@ -40,5 +43,6 @@ form.addEventListener("submit", (e) => {
     );
 
     form.reset();
+    Ui.renderProducts(); 
     
 }); 
