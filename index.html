@@ -21,6 +21,27 @@
       <nav>
         <button class="entry-data-button">Entry Data</button>
       </nav>
+
+      <div class="inventory-controls">
+        <label for="search-input"></label>
+        <input 
+        type="text"
+        name="search-input"
+        id="search-input"
+        class="inventory__search-input"
+        placeholder="Search"
+        />
+
+        <label for="sort-select">Sort by</label>
+        <select name="sort-select" id="sort-select" class="inventory__sort-select">
+          <option value="">Sort by</option>
+          <option value="name-a-z">A–Z</option>
+          <option value="date-desc">Expiration Date (Newest-Oldest)</option>
+          <option value="date-asc">Expiration Date (Oldest-Newest)</option>
+          <option value="quantity-asc">Quantity Low–High</option>
+          <option value="quantity-desc">Quantity High–Low</option>
+        </select>
+      </div>
       <!-- Display medicine-table -->
       <div class="inventory-display">
         <table class="inventory__table">
@@ -30,6 +51,7 @@
               <th class="table__header-name">Product</th>
               <th class="table__header-manufacture">Manufacture</th>
               <th class="table__header-date">Expiration Date</th>
+              <th class="table__header-status">Status</th>
               <th class="table__header-quantity">Quantitiy</th>
               <th class="table__header-tools">Tools</th>
             </tr>

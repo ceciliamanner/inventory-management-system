@@ -14,6 +14,7 @@ const expirationDate = document.querySelector(".form__date-input");
 const quantity = document.querySelector(".form__quantity-input")
 const formSubmitButton = document.querySelector(".form__submit-button");
 
+
 // Adding Eventlisteners
 document.addEventListener("DOMContentLoaded",() => {
     Ui.displayEntryData(
@@ -30,6 +31,21 @@ document.addEventListener("DOMContentLoaded",() => {
     );
 
     Ui.renderProducts();
+
+    // inventory control 
+    const searchInput = document.querySelector(".inventory__search-input");
+    const sortSelect = document.querySelector(".inventory__sort-select"); 
+
+    searchInput.addEventListener("input", () => {
+    Ui.renderProducts();
+    });
+  
+    sortSelect.addEventListener("change", () => {
+    Ui.renderProducts();
+    });
+
+
+
 });
 
 form.addEventListener("submit", (e) => {
@@ -46,3 +62,4 @@ form.addEventListener("submit", (e) => {
     Ui.renderProducts(); 
     
 }); 
+
