@@ -19,8 +19,38 @@ class Ui {
             formModal.classList.remove("display-form");
             /* formSubmitButton.textContent = "Add"; */
         });
-
     }
+
+    static displayDeleteModal(productId, productName){
+        const deleteModal = document.querySelector(".delete-modal");
+        const deleteMessage = document.querySelector(".delete-modal__text");
+        const confirmDeleteButton = document.querySelector(".delete-modal__confirm-button")
+
+        deleteMessage.textContent = `Are you sure you want to delete ${productName}`;
+        deleteModal.classList.add("display-modal");
+
+        confirmDeleteButton.addEventListener("click", () => {
+            ProductManager.deleteProduct(productId);
+            deleteModal.classList.remove("display-modal");
+            Ui.renderProducts(); 
+        });
+    }
+    static closeDeleteModal() {
+        const deleteModal = document.querySelector(".delete-modal");
+        const cancelDeleteButton = document.querySelector(".delete-modal__cancel-button");
+      
+        cancelDeleteButton.addEventListener("click", () => {
+          deleteModal.classList.remove("display-modal");
+        });
+    }
+    static deleteProduct(id){
+        ProductManager.productsCollection = ProductManager.productsCollection.filter(product => {
+            return product.id !== id
+        });
+        ProductManager.storeProducts(ProductManager.productsCollection);
+        Ui.renderProducts();
+    }
+
 
     static renderProducts() {
         const tableBody = document.querySelector(".table__body");
@@ -128,13 +158,15 @@ class Ui {
 
             // event listerns for delete & edit - button here 
 
+            deleteButton.addEventListener("click", () => {
+                Ui.displayDeleteModal(product.id, product.productName);
+                
+            }); 
+
         });
 
 
     }
-       
-
-
 }
 
 export default Ui; 

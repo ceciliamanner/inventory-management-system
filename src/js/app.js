@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded",() => {
     );
 
     Ui.renderProducts();
+    Ui.closeDeleteModal();
 
     // inventory control 
     const searchInput = document.querySelector(".inventory__search-input");

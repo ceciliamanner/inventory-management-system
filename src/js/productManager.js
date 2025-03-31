@@ -1,4 +1,5 @@
 import Medicine from "./medicine";
+import Ui from "./ui";
 
 
 class ProductManager {
@@ -24,7 +25,17 @@ class ProductManager {
     static storeProducts(collection) {
         localStorage.setItem("products-collection", JSON.stringify(collection));
 
-      }
+     }
+
+    static deleteProduct(id){
+        ProductManager.productsCollection = ProductManager.productsCollection.filter(product => {
+            return product.id !== id
+        });
+        ProductManager.storeProducts(ProductManager.productsCollection);
+        Ui.renderProducts();
+    }
+
+    
 }
 
 export default ProductManager; 
