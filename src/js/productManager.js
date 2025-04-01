@@ -57,6 +57,7 @@ class ProductManager {
     }
 
     static deleteProduct(id){
+      const latestCollection = JSON.parse(localStorage.getItem("products-collection")) || [];
         ProductManager.productsCollection = ProductManager.productsCollection.filter(product => {
             return product.id !== id
         });

@@ -13,11 +13,19 @@ class Ui {
         closeform,
         formModal,
         form,
+        validationMessage,
         formSubmitButton
     ){
         closeform.addEventListener("click", () => {
             formModal.classList.remove("display-form");
-            /* formSubmitButton.textContent = "Add"; */
+            validationMessage.style.display = "none";
+            formSubmitButton.textContent = "Add";
+            form.reset()
+
+            const invalidInput = document.querySelector(".form__validation-message")
+            invalidInput?.classList.remove("form__invalid-input")
+            Ui.currentEditId = null;
+         
         });
     }
 

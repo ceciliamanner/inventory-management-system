@@ -1,5 +1,6 @@
 import ProductManager from "./productManager";
 import Ui from "./ui";
+import Validation from "./validation";
 
 
 const openEntryData = document.querySelector(".entry-data-button");
@@ -13,6 +14,7 @@ const supplier = document.querySelector(".form__supplier-input");
 const expirationDate = document.querySelector(".form__date-input");
 const quantity = document.querySelector(".form__quantity-input")
 const formSubmitButton = document.querySelector(".form__submit-button");
+const validationMessage = document.querySelector(".form__validation-message");
 
 
 // Adding Eventlisteners
@@ -27,6 +29,7 @@ document.addEventListener("DOMContentLoaded",() => {
         closeForm,
         formModal,
         form,
+        validationMessage,
         formSubmitButton  
     );
 
@@ -51,6 +54,9 @@ document.addEventListener("DOMContentLoaded",() => {
 
 form.addEventListener("submit", (e) => {
     e.preventDefault(); 
+    if(!Validation.validateForm(validationMessage)){
+      return; 
+    }
     if (Ui.currentEditId) {
         ProductManager.editProduct(
           Ui.currentEditId,
