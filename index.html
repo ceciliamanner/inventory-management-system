@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./src/css/reset.css" />
     <link rel="stylesheet" href="./src/css/variables.css" />
@@ -18,8 +20,8 @@
 
     <!-- MAIN STRUCTURE -->
     <main>
-      <nav>
-        <button class="entry-data-button">Entry Data</button>
+      <nav class="entry-data-container">
+        <button class="entry-data-button"><i class="fa-solid fa-plus"></i></button>
       </nav>
 
       <div class="inventory-controls">
@@ -32,7 +34,6 @@
         placeholder="Search"
         />
 
-        <label for="sort-select">Sort by</label>
         <select name="sort-select" id="sort-select" class="inventory__sort-select">
           <option value="">Sort by</option>
           <option value="name-a-z">A–Z</option>
@@ -49,7 +50,7 @@
             <tr class="table__header-row">
               <th class="table__header-index">N</th>
               <th class="table__header-name">Product</th>
-              <th class="table__header-manufacture">Manufacture</th>
+              <th class="table__header-manufacture">Supplier</th>
               <th class="table__header-date">Expiration Date</th>
               <th class="table__header-status">Status</th>
               <th class="table__header-quantity">Quantitiy</th>
@@ -88,7 +89,7 @@
         <input type="date" id="expiration-date" name="expiration-date" required class="form__date-input" />
       
         <label for="quantity">Quantity</label>
-        <input type="number" id="quantity" name="quantity" required class="form__quantity-input"/>
+        <input type="number" id="quantity" name="quantity" min="1" class="form__quantity-input"/>
       
         <button class="form__submit-button" type="submit">Add</button>
         <button class="form__cancel-button" type="cancel">Close</button>

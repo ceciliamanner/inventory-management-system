@@ -1,30 +1,61 @@
+@font-face {
+  font-family: Nunito;
+  src: url("../assets/fonts/Nunito.ttf");
+}
+
 body {
     width: 100%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     background-color: var(--color-background-light);
+    font-family: nunito, Arial, Helvetica, sans-serif;
 }
 
 header {
     display: flex;
+    background-color: var(--color-background-medium);
+    color: var(--text-color-light);
     justify-content: center;
     align-items: center;    
     padding: var(--spacing-large) 0;
     text-align: center; 
   }
 
+.entry-data-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 90%;
+    margin: 1rem auto;
+}
+
 .entry-data-button{
     min-height: 100px;
     min-height: 16px;
     padding: 0.5rem 1.5rem;
+    color: white;
+    background-color: var(--color-background-medium);
     margin: 1rem;
     border-radius: var(--border-radius-small);
-    border: 1px solid rgb(144, 137, 137);
 
 } 
+.entry-data-button:hover {
+  background-color: rgb(55, 68, 55);
+}
 
   /* MEDICIN DISPLAY TABLE */ 
+  .inventory-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .inventory__search-input,
+  .inventory__sort-select {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-background-medium);
+    border-radius: var(--border-radius-small);
+  }
 
   .inventory-display{
     width: 100%;
@@ -32,16 +63,77 @@ header {
   }
 
   .inventory__table{
-    width: 90%;
+    width: 95%;
     border-collapse: collapse;
     margin: 0 auto;
+    background-color: rgb(219, 227, 218);
+   
   }
 
   th, td {
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-background-medium);
     padding: 0.5rem;
     text-align: left;
   }
+
+  th{
+    background-color: var(--color-background-medium);
+    color: white;
+  }
+
+.table__button--delete,
+.table__button--edit {
+  padding: 0.3rem 0.8rem;
+  margin: 0 0.2rem;
+  border-radius: var(--border-radius-small);
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+  color: white;
+}
+
+.table__button--delete {
+  background-color: #923c33;
+}
+
+.table__button--edit {
+  background-color: var(--color-background-medium);
+}
+
+.table__button--delete:hover {
+  background-color: #c0392b;
+}
+.table__button--edit:hover {
+  background-color: #2980b9;
+}
+
+.status--valid {
+  background-color: #e6f4ea; 
+  color: #256029; 
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  text-align: center;
+}
+
+.status--warning {
+  background-color: #f7efd4;
+  color: #7a5e00; 
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  text-align: center;
+}
+
+.status--expired {
+  background-color: #bbbaba;
+  color: #555; 
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  text-align: center;
+}
+
 
 
   /* ENTRY DATA FORM */

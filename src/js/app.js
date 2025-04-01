@@ -51,16 +51,29 @@ document.addEventListener("DOMContentLoaded",() => {
 
 form.addEventListener("submit", (e) => {
     e.preventDefault(); 
-
-    ProductManager.addProduct(
-        productName.value.trim(), 
-        supplier.value,
-        expirationDate.value,
-        quantity.value.trim()  
-    );
-
-    form.reset();
-    Ui.renderProducts(); 
+    if (Ui.currentEditId) {
+        ProductManager.editProduct(
+          Ui.currentEditId,
+          productName.value.trim(),
+          supplier.value,
+          expirationDate.value,
+          quantity.value.trim()
+        );
+        Ui.currentEditId = null;
+    
+        formModal.classList.remove("display-form");
+        formSubmitButton.textContent = "Add";
+      } else {
+        ProductManager.addProduct(
+          productName.value.trim(),
+          supplier.value,
+          expirationDate.value,
+          quantity.value.trim()
+        );
+      }
+    
+      form.reset();
+      Ui.renderProducts();
     
 }); 
 

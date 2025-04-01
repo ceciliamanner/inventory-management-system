@@ -43,6 +43,35 @@ class Ui {
           deleteModal.classList.remove("display-modal");
         });
     }
+    static displayEditModal() {
+        const formModal = document.querySelector(".form-modal");
+        const formSubmitButton = document.querySelector(".form__submit-button");
+      
+        formModal.classList.add("display-form"); 
+        formSubmitButton.textContent = "Confirm Edit"; 
+    }
+
+    static populateEditForm(id) {
+        const productName = document.querySelector(".form__product-input");
+        const supplier = document.querySelector(".form__supplier-input");
+        const expirationDate = document.querySelector(".form__date-input");
+        const quantity = document.querySelector(".form__quantity-input");
+      
+        const productToEdit = ProductManager.productsCollection.find(
+          (product) => product.id === id
+        );
+      
+        if (!productToEdit) return;
+      
+        productName.value = productToEdit.productName;
+        supplier.value = productToEdit.supplier;
+        expirationDate.value = productToEdit.expirationDate;
+        quantity.value = productToEdit.quantity;
+      
+        Ui.currentEditId = id; 
+      }
+
+
     static deleteProduct(id){
         ProductManager.productsCollection = ProductManager.productsCollection.filter(product => {
             return product.id !== id
@@ -162,9 +191,11 @@ class Ui {
                 Ui.displayDeleteModal(product.id, product.productName);
                 
             }); 
-
+            editButton.addEventListener("click", () => {
+                Ui.displayEditModal(); // öppnar formuläret
+                Ui.populateEditForm(product.id); // laddar in värden
+            });
         });
-
 
     }
 }
