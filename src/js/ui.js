@@ -134,7 +134,6 @@ class Ui {
             const row = document.createElement("tr"); 
             row.classList.add("table-row");
 
-            const indexCell = document.createElement("td");
             const nameCell = document.createElement("td"); 
             const supplierCell = document.createElement("td");
             const dateCell = document.createElement("td");
@@ -142,7 +141,6 @@ class Ui {
             const quantityCell = document.createElement("td");
             const toolsCell = document.createElement("td");
 
-            indexCell.textContent = index + 1;
             nameCell.textContent = product.productName;
             supplierCell.textContent = product.supplier;
             dateCell.textContent = product.expirationDate;
@@ -165,9 +163,6 @@ class Ui {
                 statusCell.classList.add("status--valid");
             }
 
-
-            indexCell.classList.add("table__cell--index");
-
             const deleteButton = document.createElement("button");
             const editButton = document.createElement("button");
             deleteButton.textContent = "Delete";
@@ -183,7 +178,6 @@ class Ui {
                 editButton); 
 
             row.append(
-                indexCell,
                 nameCell, 
                 supplierCell, 
                 dateCell, 
