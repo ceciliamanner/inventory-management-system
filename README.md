@@ -6,7 +6,7 @@ This project is part of the Frontend Development (FFU1200) course and demonstrat
 The application is built using HTML, CSS, and JavaScript with a class-based structure and inheritance. All data is saved locally using localStorage, ensuring persistence across sessions.
 
 ## Live Demo
-🌍 [View the deployed site on Netlify] --- 
+🌍 [View the deployed site on Netlify] https://inventory-management-system1.netlify.app/
 
 ## Installation
 git clone https://github.com/ceciliamanner/inventory-management-system.git
