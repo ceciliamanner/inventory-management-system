@@ -5,16 +5,17 @@ import Ui from "./ui";
 class ProductManager {
     static productsCollection = JSON.parse(localStorage.getItem("products-collection")) || [];
 
-    static addProduct(productName, supplier, expirationDate, quantity){
+    static addProduct(productName, supplier, expirationDate, quantity, notes){
         const latestCollection = JSON.parse(localStorage.getItem("products-collection")) || [];
 
         const newProduct = new Medicine(
             productName,
             supplier,
             expirationDate,
-            quantity
+            quantity,
+            notes
         );
-
+  
         latestCollection.push(newProduct); 
         this.storeProducts(latestCollection);
         ProductManager.productsCollection = latestCollection; 
@@ -32,7 +33,8 @@ class ProductManager {
         productName, 
         supplier, 
         expirationDate, 
-        quantity
+        quantity,
+        notes
     ) {
         const latestCollection = JSON.parse(
           localStorage.getItem("products-collection")
@@ -43,14 +45,17 @@ class ProductManager {
         );
       
         if (productIndex !== -1) {
-          latestCollection[productIndex] = {
-            id, 
+          const updatedProduct = new Medicine(
             productName,
             supplier,
             expirationDate,
             quantity,
-          };
-        }
+            notes 
+        );
+        updatedProduct.id = id;
+        latestCollection[productIndex] = updatedProduct;
+
+      }
       
         ProductManager.storeProducts(latestCollection);
         ProductManager.productsCollection = latestCollection;
@@ -58,11 +63,13 @@ class ProductManager {
 
     static deleteProduct(id){
       const latestCollection = JSON.parse(localStorage.getItem("products-collection")) || [];
-        ProductManager.productsCollection = ProductManager.productsCollection.filter(product => {
-            return product.id !== id
-        });
-        ProductManager.storeProducts(ProductManager.productsCollection);
-        Ui.renderProducts();
+
+      ProductManager.productsCollection = ProductManager.productsCollection.filter(product => {
+          return product.id !== id;
+      });
+    
+      ProductManager.storeProducts(ProductManager.productsCollection);
+      Ui.renderProducts();
     }
 
     

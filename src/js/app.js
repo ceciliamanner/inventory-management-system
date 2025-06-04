@@ -11,6 +11,7 @@ const formModal = document.querySelector(".form-modal");
 const form = document.querySelector(".form");
 const productName = document.querySelector(".form__product-input");
 const supplier = document.querySelector(".form__supplier-input");
+const notes = document.querySelector(".form__notes-input"); 
 const expirationDate = document.querySelector(".form__date-input");
 const quantity = document.querySelector(".form__quantity-input")
 const formSubmitButton = document.querySelector(".form__submit-button");
@@ -36,7 +37,7 @@ document.addEventListener("DOMContentLoaded",() => {
     Ui.renderProducts();
     Ui.closeDeleteModal();
 
-    // inventory control 
+    // Inventory control 
     const searchInput = document.querySelector(".inventory__search-input");
     const sortSelect = document.querySelector(".inventory__sort-select"); 
 
@@ -63,7 +64,8 @@ form.addEventListener("submit", (e) => {
           productName.value.trim(),
           supplier.value,
           expirationDate.value,
-          quantity.value.trim()
+          quantity.value.trim(),
+          notes.value.trim() 
         );
         Ui.currentEditId = null;
     
@@ -74,11 +76,14 @@ form.addEventListener("submit", (e) => {
           productName.value.trim(),
           supplier.value,
           expirationDate.value,
-          quantity.value.trim()
+          quantity.value.trim(),
+          notes.value.trim() 
         );
       }
     
+      formModal.classList.remove("display-form");
       form.reset();
+      notes.value = ""; 
       Ui.renderProducts();
     
 }); 

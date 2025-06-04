@@ -1,11 +1,24 @@
 :root {
     /* COLORS */
-    --color-background-light: #b4ceb9;
-    --color-background-medium: #185338ea;
+    --color-background-light: #eff2f6;
+    --color-background-medium: #16385a;
     --color-background-dark: #002244;
   
     --text-color-light: #ffffff;
     --text-color-dark: #002244;
+
+      /* KNAPP-FÄRGER */
+  --button-confirm-bg: #2ecc71;
+  --button-confirm-hover: #27ae60;
+
+  --button-cancel-bg: #bdc3c7;
+  --button-cancel-hover: #95a5a6;
+
+  --button-delete-bg: #923c33;
+  --button-delete-hover: #c0392b;
+
+  --button-edit-bg: #16385a;
+  --button-edit-hover: #2980b9;
   
     /* SPACING */
     --spacing-x-small: 0.25rem;

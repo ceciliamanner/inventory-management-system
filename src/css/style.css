@@ -40,22 +40,30 @@ header {
 
 } 
 .entry-data-button:hover {
-  background-color: rgb(55, 68, 55);
+  background-color: var(--button-edit-hover);
 }
 
   /* MEDICIN DISPLAY TABLE */ 
-  .inventory-controls {
+.inventory-controls {
     display: flex;
     justify-content: center;
     gap: 1rem;
     margin-bottom: 2rem;
-  }
-  .inventory__search-input,
-  .inventory__sort-select {
+}
+.inventory__search-input,
+.inventory__sort-select {
     padding: 0.5rem 1rem;
     border: 1px solid var(--color-background-medium);
     border-radius: var(--border-radius-small);
-  }
+}
+
+.search-message {
+    text-align: center;
+    padding: 1rem;
+    font-style: italic;
+    color: var(--color-background-dark);
+}
+  
 
   .inventory-display{
     width: 100%;
@@ -64,9 +72,12 @@ header {
 
   .inventory__table{
     width: 95%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     margin: 0 auto;
-    background-color: rgb(219, 227, 218);
+    background-color: rgb(218, 224, 228);
+    border-radius: var(--border-radius-small); 
+    overflow: hidden; 
    
   }
 
@@ -80,6 +91,14 @@ header {
     background-color: var(--color-background-medium);
     color: white;
   }
+ 
+  .notes-cell {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+ 
 
 .table__button--delete,
 .table__button--edit {
@@ -93,25 +112,24 @@ header {
 }
 
 .table__button--delete {
-  background-color: #923c33;
+  background-color: var(--button-delete-bg);
 }
 
 .table__button--edit {
-  background-color: var(--color-background-medium);
+  background-color: var(--button-edit-bg);
 }
 
 .table__button--delete:hover {
-  background-color: #c0392b;
+  background-color: var(--button-delete-hover);
 }
 .table__button--edit:hover {
-  background-color: #2980b9;
+  background-color: var(--button-edit-hover);
 }
 
 .status--valid {
-  background-color: #e6f4ea; 
-  color: #256029; 
+  background-color: #e6f4f2; 
+  color: #474b6a; 
   font-weight: 600;
-  border-radius: 4px;
   padding: 0.25rem 0.5rem;
   text-align: center;
 }
@@ -120,7 +138,6 @@ header {
   background-color: #f7efd4;
   color: #7a5e00; 
   font-weight: 600;
-  border-radius: 4px;
   padding: 0.25rem 0.5rem;
   text-align: center;
 }
@@ -129,7 +146,6 @@ header {
   background-color: #bbbaba;
   color: #555; 
   font-weight: 600;
-  border-radius: 4px;
   padding: 0.25rem 0.5rem;
   text-align: center;
 }
@@ -155,24 +171,42 @@ header {
   .form{
     min-width: 360px;
     padding: var(--spacing-medium);
-    width: 50%;
-    height: 40%;
+    width: 30%;
+    height: 50%;
     display: flex;
     flex-direction: column;
     background-color: var(--color-background-light);
     border-radius: var(--border-radius-small);
   }
-  
-  .form__quantity-input{
+
+  .form__notes-input {
+    resize: none; 
+    width: 100%;
+    max-width: 400px;
+    min-height: 2.5rem;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    border-radius: var(--border-radius-small);
+    border: 1px solid var(--color-background-medium);
     margin-bottom: 1rem;
   }
   
+  
   .form__submit-button, 
   .form__cancel-button {
-    width: 50%;
+    width: 10rem;
+    padding: 0.3rem;
     display: block;
     margin: 0 auto;
     margin-bottom: 10px;
+    color: white;
+    border-color: white;
+  }
+  .form__submit-button{
+    background-color: var(--button-confirm-bg);
+  }
+  .form__cancel-button{
+    background-color: var(--button-cancel-bg);
   }
 /**/ 
   .display-form{
@@ -214,6 +248,30 @@ header {
     min-height: 32px;
     border: 2px solid var(--color-background-dark);
     border-radius: var(--border-radius-small);
+  }
+
+  .delete-modal__confirm-button {
+    background-color: var(--button-confirm-bg);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .delete-modal__confirm-button:hover {
+    background-color: var(--button-confirm-hover);
+  }
+  
+  .delete-modal__cancel-button {
+    background-color: var(--button-cancel-bg);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .delete-modal__cancel-button:hover {
+    background-color: var(--button-cancel-hover);
   }
   
   .display-modal {

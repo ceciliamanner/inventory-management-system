@@ -1,5 +1,4 @@
 
-
 class Validation {
     static validateForm(validationMessage){
         validationMessage.style.display = "none";
@@ -35,4 +34,3 @@ class Validation {
 
 export default Validation; 
 
-// problem med validation-message 

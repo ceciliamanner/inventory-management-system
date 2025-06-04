@@ -7,6 +7,12 @@ class Ui {
     ){
         openEntryData.addEventListener("click", () => {
             formModal.classList.add("display-form"); 
+            const validationMessage = document.querySelector(".form__validation-message");
+            validationMessage.style.display = "none";
+            validationMessage.textContent = "";
+
+            const invalidInputs = document.querySelectorAll(".form__invalid-input");
+            invalidInputs.forEach(input => input.classList.remove("form__invalid-input"));
         }); 
     }
     static closeEntryData(
@@ -34,7 +40,7 @@ class Ui {
         const deleteMessage = document.querySelector(".delete-modal__text");
         const confirmDeleteButton = document.querySelector(".delete-modal__confirm-button")
 
-        deleteMessage.textContent = `Are you sure you want to delete ${productName}`;
+        deleteMessage.textContent = `Are you sure you want to delete ${productName}?`;
         deleteModal.classList.add("display-modal");
 
         confirmDeleteButton.addEventListener("click", () => {
@@ -57,6 +63,12 @@ class Ui {
       
         formModal.classList.add("display-form"); 
         formSubmitButton.textContent = "Confirm Edit"; 
+        const validationMessage = document.querySelector(".form__validation-message");
+        validationMessage.style.display = "none";
+        validationMessage.textContent = "";
+    
+        const invalidInputs = document.querySelectorAll(".form__invalid-input");
+        invalidInputs.forEach(input => input.classList.remove("form__invalid-input"));
     }
 
     static populateEditForm(id) {
@@ -64,6 +76,7 @@ class Ui {
         const supplier = document.querySelector(".form__supplier-input");
         const expirationDate = document.querySelector(".form__date-input");
         const quantity = document.querySelector(".form__quantity-input");
+        const notes = document.querySelector("#notes");
       
         const productToEdit = ProductManager.productsCollection.find(
           (product) => product.id === id
@@ -75,6 +88,7 @@ class Ui {
         supplier.value = productToEdit.supplier;
         expirationDate.value = productToEdit.expirationDate;
         quantity.value = productToEdit.quantity;
+        notes.value = productToEdit.notes || "";
       
         Ui.currentEditId = id; 
       }
@@ -93,6 +107,7 @@ class Ui {
         const tableBody = document.querySelector(".table__body");
         const searchInput = document.querySelector(".inventory__search-input");
         const sortSelect = document.querySelector(".inventory__sort-select");
+        const message = document.querySelector(".search-message"); 
 
 
         tableBody.innerHTML = ""; 
@@ -104,8 +119,16 @@ class Ui {
         const searchValue = searchInput.value.toLowerCase();
         if (searchValue) {
             products = products.filter((product) =>
-                product.productName.toLowerCase().includes(searchValue)
+                product.productName.toLowerCase().startsWith(searchValue)
               );
+        }
+        
+        if (products.length === 0) {
+            message.textContent = `No results for '${searchValue}'`;
+            tableBody.innerHTML = "";
+            return;
+        } else {
+            message.textContent = ""; 
         }
 
         switch(sortSelect.value){
@@ -139,12 +162,16 @@ class Ui {
             const dateCell = document.createElement("td");
             const statusCell = document.createElement("td");
             const quantityCell = document.createElement("td");
+            const notesCell = document.createElement("td"); 
             const toolsCell = document.createElement("td");
 
             nameCell.textContent = product.productName;
             supplierCell.textContent = product.supplier;
             dateCell.textContent = product.expirationDate;
             quantityCell.textContent = product.quantity;
+            notesCell.textContent = product.notes || "-";              
+            notesCell.classList.add("notes-cell");
+            notesCell.title = product.notes || "-";
 
             // Expiration status
             const today = new Date();
@@ -168,11 +195,12 @@ class Ui {
             deleteButton.textContent = "Delete";
             editButton.textContent = "Edit";
 
+
             deleteButton.classList.add("table__button--delete");
             editButton.classList.add("table__button--edit");
 
 
-            // append elements
+            // Append elements
             toolsCell.append(
                 deleteButton, 
                 editButton); 
@@ -183,19 +211,20 @@ class Ui {
                 dateCell, 
                 statusCell, 
                 quantityCell, 
+                notesCell, 
                 toolsCell);
 
             tableBody.appendChild(row);
 
-            // event listerns for delete & edit - button here 
+            // Event listerns for delete & edit 
 
             deleteButton.addEventListener("click", () => {
                 Ui.displayDeleteModal(product.id, product.productName);
                 
             }); 
             editButton.addEventListener("click", () => {
-                Ui.displayEditModal(); // öppnar formuläret
-                Ui.populateEditForm(product.id); // laddar in värden
+                Ui.displayEditModal(); 
+                Ui.populateEditForm(product.id); 
             });
         });
 
